@@ -296,3 +296,49 @@ def get_hand_value(cards):
         sum_rank += 1
 
     return sum_rank
+
+def get_game_outcome(player_hand, dealer_hand):
+    """Returns the game's outcome.
+
+    Parameters:
+        player_hand (list): the list of cards in the player's hand.
+        dealer_hand (list): the list of cards in the dealer's hand.
+
+    Returns:
+        str: message denoting the game's outcome
+
+    Examples:
+        >>> get_game_outcome([('10', SPADES), ('7', HEARTS)],
+                             [('2', CLUBS), ('4', DIAMONDS), ('K', DIAMONDS),
+                              ('3', SPADES)])
+        'You lose!'
+    """
+    #assign previous value function to player/dealer hand
+    play_outcome = get_hand_value(player_hand)
+    deal_outcome = get_hand_value(dealer_hand)
+
+#conditional statements based on player/dealer values
+    if (deal_outcome == 21 and len(dealer_hand)== 2 and play_outcome == 21 and
+        len(player_hand)> 2):
+      return "Dealer has Blackjack! You lose!"
+
+    elif play_outcome == deal_outcome and play_outcome < 22 and deal_outcome < 22:
+      return "It's a tie."
+
+    elif play_outcome > 21:
+      return "Bust. You lose!"
+
+    elif deal_outcome > 21:
+      return "Dealer busts. You win!"
+
+    elif deal_outcome == 21 and len(dealer_hand)== 2:
+      return "Dealer has Blackjack! You lose!"
+
+    elif play_outcome == 21 and len(player_hand)== 2:
+      return "Blackjack! You win!"
+
+    elif play_outcome > deal_outcome:
+      return "You win!"
+
+    else:
+      return "You lose!"

@@ -108,3 +108,28 @@ def draw_card(deck):
         ('2', '♥')
     """
     return deck.pop()
+
+def get_move():
+    """
+    Asks the player for their move, and returns 'h' for hit
+    or 's' for stand.
+
+    Returns:
+        move (str): 'h' for hit or 's' for stand
+
+    Examples:
+        >>> get_move()
+        's'
+
+        >>> get_move()
+        'h'
+    """
+
+    # Loop until the player enters a valid move.
+    is_valid_move = False
+    while not is_valid_move:
+        user_input = input('[h]it or [s]tand  > ')
+        move = user_input.lower()
+        if move in ['h', 's', 'hit', 'stand']:
+            is_valid_move = True
+    return move

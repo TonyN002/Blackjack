@@ -255,3 +255,44 @@ def play_blackjack():
 
         # Continue playing or exit the game.
         is_playing_blackjack = is_playing_again()
+
+def get_hand_value(cards):
+    """
+    Returns the value of the cards. Face cards are worth 10, aces are
+    worth 11 or 1 (this function picks the most suitable ace value).
+
+    Parameters:
+        cards (list): the list of cards to score. Each card in
+                        the list is also a list composed of a
+                        rank and suit.
+
+    Returns:
+        int: the total value of the cards
+
+    Examples:
+        >>> get_hand_value([('2', CLUBS), ('4', DIAMONDS), ('K', DIAMONDS),
+                            ('3', SPADES)])
+        19
+
+        >>> get_hand_value([('10', SPADES), ('A', HEARTS)])
+        21
+    """
+#Separate rank from suits for hand seeing that suits aren't needed to calculate value
+    hand_rank = [rank[0] for rank in cards]
+    sum_rank = 0
+
+#assigns values to no-Ace ranks and sums
+    for rank in hand_rank:
+      if rank in "JQK":
+        sum_rank += 10
+      elif rank.isdigit():
+        sum_rank += int(rank)
+
+#if Ace assign 1 or 11 based on total hand value
+    for rank in hand_rank:
+      if rank in "A" and (sum_rank + 11 <= 21):
+        sum_rank += 11
+      elif rank in "A" and (sum_rank + 11 > 21):
+        sum_rank += 1
+
+    return sum_rank

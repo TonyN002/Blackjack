@@ -133,3 +133,39 @@ def get_move():
         if move in ['h', 's', 'hit', 'stand']:
             is_valid_move = True
     return move
+
+def get_shuffled_deck():
+    """
+    Return a shuffled deck of 52 cards.
+
+    Each playing card can be represented using two characters. The
+    first character is the value of the card, with the values 2
+    through 10 being represented directly. The characters 'J', 'Q',
+    'K' and 'A' are used to represent the values Jack, Queen,
+    King and Ace, respectively.
+
+    The second character is a character code that represents the
+    suit of the card: '♠' for spades, '♥' for hearts, '♦' for diamonds
+    and '♣' for clubs.
+
+    Returns:
+        list: representing the deck of 52 cards, where each card is
+                a list of tuples of rank and suit
+
+    Example:
+
+        >>> get_shuffled_deck()
+        [('K','♣'), ('10', '♥'), ('A', '♣'), ('9', '♦'), ('2', '♠'), ...]
+    """
+
+    # Initialize cards in the deck.
+    deck = []
+    for suit in [HEARTS, DIAMONDS, SPADES, CLUBS]:
+        for rank in ['A', '2', '3', '4', '5', '6', '7', '8',
+                     '9', '10', 'J', 'Q', 'K']:
+            deck.append((rank, suit))
+
+    # Shuffle the cards in the deck.
+    random.shuffle(deck)
+
+    return deck

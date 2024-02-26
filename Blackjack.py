@@ -389,3 +389,6 @@ def get_dealer_moves(deck, player_hand, dealer_hand):
         print(f"Dealer drew a {new_card[0]} of {new_card[1]}")
         dealer_hand.append(new_card)
         display_hands(player_hand, dealer_hand, True)
+
+if __name__ == "__main__":
+   play_blackjack()

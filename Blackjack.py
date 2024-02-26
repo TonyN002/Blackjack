@@ -88,3 +88,23 @@ def display_hands(player_hand, dealer_hand, show_dealer_hand):
     print('PLAYER:', get_hand_value(player_hand))
     display_cards(player_hand)
     print('\n')
+
+def draw_card(deck):
+    """
+    Returns and removes the top (first) card from the deck.
+    After the draw_card function, the deck contains one less card.
+
+    Parameters:
+        deck (list): the deck of cards to draw from
+
+    Returns:
+        card (list): rank and suit of card drawn
+
+    Examples:
+        >>> draw_card(get_shuffled_deck())
+        ('Q', '♣')
+
+        >>> draw_card(get_shuffled_deck())
+        ('2', '♥')
+    """
+    return deck.pop()

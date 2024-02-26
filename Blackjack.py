@@ -169,3 +169,48 @@ def get_shuffled_deck():
     random.shuffle(deck)
 
     return deck
+
+def is_playing_again():
+    """
+    Returns whether the user wants to play again.
+
+    Returns:
+        bool: True if user wants to play again. False otherwise.
+    """
+
+    is_valid_response = False
+    while not is_valid_response:
+        play_again = input("Play again? [y]es or [n]o  > ")
+        if play_again.lower() in ['y', 'n', 'yes', 'no']:
+            is_valid_response = True
+
+    if play_again.lower() == 'y':
+        return True
+    return False
+
+def press_enter_to_continue():
+    """
+    Pauses the screen until the enter key is pressed.
+    """
+
+    input('Press Enter to continue...')
+    print('\n\n')
+
+def print_welcome_message():
+    """
+    Prints welcome message for Blackjack game.
+    """
+
+    print()
+    print('Welcome to Blackjack!')
+    print()
+    print('Rules:')
+    print('- Get as close to 21 without going over.')
+    print('- Kings, Queens, and Jacks are worth 10 points.')
+    print('- Aces are worth 1 or 11 points.')
+    print('- Cards 2 through 10 are worth their face value.')
+    print()
+    print('- For gameplay, press h or s.')
+    print('  [h]it to take another card.')
+    print('  [s]tand to stop taking cards.')
+    print()

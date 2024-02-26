@@ -368,3 +368,24 @@ def get_player_moves(deck, player_hand, dealer_hand):
 #stops loop when player stands
       else:
         stand = True
+
+def get_dealer_moves(deck, player_hand, dealer_hand):
+    """
+    Handle dealer's actions.
+
+    Parameters:
+        deck (list): cards to use
+        player_hand (list): cards in the player's hand.
+        dealer_hand (list): cards in the dealer's hand.
+
+    Examples:
+        See Section 2.4.4.2 for test cases
+    """
+
+#draws new card while dealer is under 17
+    while get_hand_value(dealer_hand) < 17:
+        print("Dealer hits...")
+        new_card = draw_card(deck)
+        print(f"Dealer drew a {new_card[0]} of {new_card[1]}")
+        dealer_hand.append(new_card)
+        display_hands(player_hand, dealer_hand, True)

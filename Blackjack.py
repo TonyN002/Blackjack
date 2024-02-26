@@ -342,3 +342,29 @@ def get_game_outcome(player_hand, dealer_hand):
 
     else:
       return "You lose!"
+    
+def get_player_moves(deck, player_hand, dealer_hand):
+    """
+    Handle player's action.
+
+    Parameters:
+        deck (list): cards to use
+        player_hand (list): cards in the player's hand.
+        dealer_hand (list): cards in the dealer's hand.
+
+    Examples:
+        See Section 2.4.3.2 for test cases
+    """
+    stand = False
+    hit = ("h","hit")
+
+#loop thru to get next card when player hits or goes over 21.
+    while get_hand_value(player_hand) <= 21 and stand == False:
+      if get_move() in hit:
+        new_card = draw_card(deck)
+        player_hand.append(new_card)
+        display_hands(player_hand, dealer_hand, False)
+
+#stops loop when player stands
+      else:
+        stand = True

@@ -214,3 +214,44 @@ def print_welcome_message():
     print('  [h]it to take another card.')
     print('  [s]tand to stop taking cards.')
     print()
+
+def play_blackjack():
+    """
+    The main driver for the Blackjack game.
+    """
+
+    # Provide a welcome screen.
+    print_welcome_message()
+
+    # Begin gameplay.
+    is_playing_blackjack = True
+
+    while is_playing_blackjack:
+        # Reset that player does not have Blackjack.
+        has_blackjack = False
+
+        # Create new shuffled deck.
+        deck = get_shuffled_deck()
+
+        # Give the dealer and player two cards from the deck.
+        dealer_hand = [draw_card(deck), draw_card(deck)]
+        player_hand = [draw_card(deck), draw_card(deck)]
+
+        # Show the initial hands. The dealer's first card is hidden.
+        display_hands(player_hand, dealer_hand, False)
+
+        # Handle player and dealer actions.
+        if get_hand_value(player_hand) < 21:
+            get_player_moves(deck, player_hand, dealer_hand)
+
+            # Get dealer moves. Make sure player has not bust.
+            if get_hand_value(player_hand) <= 21:
+                get_dealer_moves(deck, player_hand, dealer_hand)
+        display_hands(player_hand, dealer_hand, True)
+
+        # Display if player won or lost.
+        game_result = get_game_outcome(player_hand, dealer_hand)
+        print(game_result)
+
+        # Continue playing or exit the game.
+        is_playing_blackjack = is_playing_again()
